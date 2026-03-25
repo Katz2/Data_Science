@@ -1,1 +1,19 @@
+SELECT transaction_date,
+store_location,
+MONTHNAME(transaction_date) AS month_name,
+EXTRACT(HOUR FROM transaction_time) AS hour_,
+COUNT(DISTINCT transaction_id) AS number_of_sales,
+SUM(unit_price*transaction_qty) AS Revenue,
+CASE 
+ WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 6 AND 11 THEN 'Morning'
+ WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+ WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 18 AND 21 THEN 'Evening'
+ END AS Period_in_day
+FROM brightlearn
+GROUP BY transaction_date, 
+    month_name, 
+    hour_, 
+    store_location,
+    Period_in_day
+ORDER BY Revenue DESC;
 
