@@ -1,19 +1,35 @@
-SELECT transaction_date,
-store_location,
-MONTHNAME(transaction_date) AS month_name,
-EXTRACT(HOUR FROM transaction_time) AS hour_,
-COUNT(DISTINCT transaction_id) AS number_of_sales,
-SUM(unit_price*transaction_qty) AS Revenue,
-CASE 
- WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 6 AND 11 THEN 'Morning'
- WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 12 AND 17 THEN 'Afternoon'
- WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 18 AND 21 THEN 'Evening'
- END AS Period_in_day
-FROM brightlearn
-GROUP BY transaction_date, 
-    month_name, 
-    hour_, 
+--Final Query 
+SELECT
+    transaction_date,
+    transaction_time,
+    transaction_qty,
     store_location,
-    Period_in_day
-ORDER BY Revenue DESC;
+    product_id,
+    product_category,
+    product_type,
+    product_detail,
+    (transaction_qty*unit_price) AS Revenue,--This shows us more detail
+    -- New columns
+    DAYNAME(transaction_date) AS Day_name,
+    MONTHNAME(transaction_date) AS Month_name,
+    DAYOFMONTH(transaction_date) AS Date_in_month,
+    
+    -- Weekend / Weekday classification
+    CASE 
+        WHEN DAYNAME(transaction_date) IN ('SAT', 'SUN') THEN 'Weekend'
+        ELSE 'Weekday'
+    END AS DAY_classification,
+
+    -- Time classification
+    CASE 
+        WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 5 AND 8 THEN '01.RUSH HOUR'
+        WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 9 AND 11 THEN '02.Mid Morning'
+        WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 12 AND 15 THEN '03.Afternoon'
+        WHEN EXTRACT(HOUR FROM transaction_time) BETWEEN 16 AND 21 THEN '04.RUSH HOUR'
+        ELSE 'Night'
+    END AS Time_classification
+
+FROM brightlearn
+
+;
 
