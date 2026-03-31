@@ -1,0 +1,34 @@
+1. Overview of the Case Study
+This case study focuses on analysing transactional data from a coffee shop to 
+understand sales performance, customer behaviour, and product trends. 
+The objective was to identify key revenue drivers and provide actionable insights to 
+improve business performance and customer engagement.
+
+
+2. How the Case Study Was Conducted & Insights Found
+The analysis was conducted using a structured, data-driven approach:
+Data was extracted and transformed using Snowflake (SQL) to calculate key metrics such as revenue, sales volume, and time-based trends
+Data was cleaned and organised using Google Sheets for further analysis
+Visualisations and dashboards were created in Google Looker Studio to identify patterns and trends
+Miro was used for planning and structuring the analysis approach
+ClickUp was used to track progress and manage tasks throughout the project
+Key Insights:
+Coffee is the top revenue-generating product category, followed by Tea and Bakery
+Sales peak during the morning hours (6 AM – 11 AM), indicating strong demand during this period
+A small number of products contribute to the majority of revenue
+Afternoon and evening periods show lower sales, highlighting opportunities for growth.
+
+3. Summary of Findings
+The analysis revealed that revenue is heavily driven by a 
+few high-performing products and specific time periods. 
+Morning hours are the most profitable, while later periods underperform. 
+Customer purchasing behaviour shows opportunities for bundling and cross-selling, 
+particularly between beverages and bakery items.
+
+  
+4. Tools Used
+Snowflake – Data extraction, transformation, and analysis (SQL)
+Google Looker Studio – Data visualisation and dashboard creation
+Google Sheets – Data cleaning and organisation
+Miro – Planning and structuring the case study
+ClickUp – Task tracking and project management
